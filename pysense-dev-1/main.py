@@ -11,7 +11,7 @@ import socket
 import time
 import binascii
 import config
-import struct
+import ustruct
 
 
 
@@ -79,12 +79,12 @@ def send(data):
     s.setblocking(True)
 
     # uplink data to send
-    print("Sending uplink", binascii.hexlify(data).decode("utf-8"))
+    print("Sending uplink", ustruct.unpack('f',data))
     s.send(data)
     print("Uplink sent")
 
 
 while True:
-    pressure = struct.pack('d', mpp.pressure())
+    pressure = ustruct.pack('f', mpp.pressure())
     send(pressure)
     time.sleep(30)
