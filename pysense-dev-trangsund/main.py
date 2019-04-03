@@ -81,17 +81,12 @@ def send(data):
     print("Uplink sent")
 
 
-# initialize pin `G10` as sensor pin
-
 while True:
-    # read temperature (celcius) and humidity (percent)
-    #temp, hum =
-    temp_str = '{}.{}'.format(temp//10, temp % 10)
-    hum_str = '{}.{}'.format(hum//10, hum % 10)
 
-    # create string to send
-    uplink = '{} {}'.format(temp_str, hum_str)
+    press_str = '{"pressure":' + str(mpp.pressure()) +'}'
+    print(press_str)
+    send(press_str)
 
     # convert ascii to hex values and send over LoRaWAN
-    send(bytearray(uplink))
+#    send(bytearray(uplink))
     time.sleep(60)  # repeat every minute
