@@ -87,6 +87,18 @@ while True:
     print(press_str)
     send(press_str)
 
+    print("Temperature: " + str(si.temperature())+ " deg C and Relative Humidity: " + str(si.humidity()) + " %RH")
+
+    temp_str = '{"temp":' + str(si.temperature()) +'}'
+    print(temp_str)
+    send(temp_str)
+
+    RF_str = '{"RF":' + str(si.humidity()) +'}'
+    print(RF_str)
+    send(RF_str)
+
+
+
     # convert ascii to hex values and send over LoRaWAN
 #    send(bytearray(uplink))
-    time.sleep(60)  # repeat every minute
+    time.sleep(20)  # repeat every minute
