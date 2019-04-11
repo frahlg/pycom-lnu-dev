@@ -85,6 +85,37 @@ def send(data):
 
 
 while True:
+     # Returns pressure in Pa. Mode may also be set to ALTITUDE, returning a value in meters
+
+    print("Temperature: " + str(si.temperature())+ " deg C and Relative Humidity: " + str(si.humidity()) + " %RH")
+    print("Dew point: "+ str(si.dew_point()) + " deg C")
+    t_ambient = 24.4
+    print("Humidity Ambient for " + str(t_ambient) + " deg C is " + str(si.humid_ambient(t_ambient)) + "%RH")
+
+    print("Light (channel Blue lux, channel Red lux): " + str(lt.light()))
+
+    print("Acceleration: " + str(li.acceleration()))
+    print("Roll: " + str(li.roll()))
+    print("Pitch: " + str(li.pitch()))
+
+    print("Battery voltage: " + str(py.read_battery_voltage()))
+
+
+while true:
+    print("Altitude: " + str(mp.altitude()))
+    s.send(str( '{altitude}:' + str(mp.altitude()) ))
+    mpp = MPL3115A2(py,mode=PRESSURE)
+
+    pressure = ("pressure: " + str(mpp.pressure()))
+    s.send(pressure)
+
+
+    print("MPL3115A2 temperature: " + str(mp.temperature()))
+    s.send(str( '{temp}:' + str(mp.temperature()) ))
+
+
+
+
     pressure = ustruct.pack('f', mpp.pressure())
     send(pressure)
     time.sleep(30)
