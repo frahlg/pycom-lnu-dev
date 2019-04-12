@@ -84,9 +84,9 @@ while True:
     lpp.add_accelerometer(li.acceleration()[0],li.acceleration()[1],li.acceleration()[2])
     lpp.add_luminosity(lt.light()[0],channel=20)
     lpp.add_luminosity(lt.light()[1],channel=21)
-    lpp.send()
+    lpp.send(reset_payload = True)
     print('Sent LPP')
-    time.sleep(30)
+    time.sleep(180)
 
 
 
