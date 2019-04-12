@@ -72,12 +72,44 @@ s.setsockopt(socket.SOL_LORA, socket.SO_DR, 5)
 s.setblocking(True)
 
 import cayenneLPP
-lpp = cayenneLPP.CayenneLPP(size = 200, sock = s)
+
+lpp = cayenneLPP.CayenneLPP(size = 100, sock = s)
+
+while True:
+    lpp.add_temperature(mp.temperature())
+    lpp.add_barometric_pressure(mpp.pressure()/100)
+    lpp.add_relative_humidity(si.humidity())
+    mp.altitude()
+    si.dew_point()
+    lpp.add_accelerometer(li.acceleration()[0],li.acceleration()[1],li.acceleration()[2])
+    lpp.add_luminosity(lt.light()[0],channel=20)
+    lpp.add_luminosity(lt.light()[1],channel=21)
+    lpp.send()
+    print('Sent LPP')
+    time.sleep(30)
 
 
 
 
-lpp.add_temperature(mp.temperature())
-lpp.add_pressure(mpp.pressure())
 
-lpp.send()
+# while True:
+#
+#     press_str = '{"pressure":' + str(mpp.pressure()) +'}'
+#     print(press_str)
+#     send(press_str)
+#
+#     print("Temperature: " + str(si.temperature())+ " deg C and Relative Humidity: " + str(si.humidity()) + " %RH")
+#
+#     temp_str = '{"temp":' + str(si.temperature()) +'}'
+#     print(temp_str)
+#     send(temp_str)
+#
+#     RF_str = '{"RF":' + str(si.humidity()) +'}'
+#     print(RF_str)
+#     send(RF_str)
+#
+#
+#
+#     # convert ascii to hex values and send over LoRaWAN
+# #    send(bytearray(uplink))
+#     time.sleep(20)  # repeat every minute
