@@ -3,6 +3,8 @@
 
 The Electron module needs to be downgraded in order to the serialport to work.
 
+https://github.com/pycom/pymakr-vsc/issues/53
+
 ####
 
 
