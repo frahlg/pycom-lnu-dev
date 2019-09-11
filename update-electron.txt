@@ -1,0 +1,23 @@
+
+### The newest version of Pymakr does not work on Mac with Atom or VSCode.
+
+The serialport module needs to be downgraded.
+
+####
+
+
+
+npm install -g prebuild
+npm install -g prebuild-install
+
+### VSCode:
+cd ~/.vscode/extensions/pycom.pymakr-1.1.2/node_modules/@serialport/bindings
+
+###
+
+#### Atom:
+cd ~/.atom/packages/pymakr/node_modules/\@serialport/bindings
+
+####
+
+prebuild-install --runtime electron --target 4.2.5 --tag-prefix @serialport/bindings@ --verbose
