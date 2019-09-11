@@ -1,7 +1,7 @@
 
 ### The newest version of Pymakr does not work on Mac with Atom or VSCode.
 
-The serialport module needs to be downgraded.
+The Electron module needs to be downgraded in order to the serialport to work.
 
 ####
 
